@@ -1,4 +1,4 @@
 main:
 	python2 main.py
-wmain:
-	py -2 main.py
+other:
+	python2 other.py > out.html
