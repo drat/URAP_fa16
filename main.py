@@ -33,15 +33,46 @@ class Acc:
     def fetch(self,url):
         req = urllib2.Request(url,None,self.headers)
         res = self.opener.open(req)
-        print res.read()
+        # print res.read()
         return res.read()
 
 
-url = 'https://m.facebook.com/' + username
+names = ['serenayan0919', 'bradleywolfe', 'ali.kelley.94']
+
 user = Acc()
 user.login()
-# user.fetch('https://m.facebook.com/ali.kelley.94')
-user.fetch(url)
+for n in names:
+    f = open(n + '_' + "home" + '.html', "w")
+    url = 'https://m.facebook.com/' + n
+    s = user.fetch(url)
+    f.write(s)
+    f.close
+    time.sleep(0.5)
 
-for name in sys.stdin:
-    main(name)
+    # f = open(n + '_' + 'likes' + '.html', "w")
+    # url = 'https://m.facebook.com/' + n + '?v=likes'
+    # s = user.fetch(url)
+    # f.write(s)
+    # f.close
+    # time.sleep(0.5)
+
+    # f = open(n + '_' + "timeline" + '.html', "w")
+    # url = 'https://m.facebook.com/' + n + '?v=timeline'
+    # s = user.fetch(url)
+    # f.write(s)
+    # f.close
+    # time.sleep(0.5)
+
+    # f = open(n + '_' + "friends" + '.html', "w")
+    # url = 'https://m.facebook.com/' + n + '/friends'
+    # s = user.fetch(url)
+    # f.write(s)
+    # f.close
+    # time.sleep(0.5)
+
+
+# name = 'serenayan0919'
+# url = 'https://m.facebook.com/' + name
+# user = Acc()
+# user.login()
+# s = user.fetch(url)
