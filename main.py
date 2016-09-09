@@ -47,7 +47,7 @@ with open('user_name.csv', 'rb') as f:
 user = Acc()
 user.login()
 for n in names:
-    f = open('..out/' + n[0] + '_' + "home" + '.html', "w")
+    f = open('out/' + n[0] + '_' + "home" + '.html', "w")
     url = 'https://m.facebook.com/' + n[0]
     s = user.fetch(url)
     f.write(s)
@@ -61,7 +61,7 @@ for n in names:
         print url
         ind += 11
         page += 1
-        f = open('..out/' + n[0] + '_' + 'likes_p' + str(page) +'.html', "w")
+        f = open('out/' + n[0] + '_' + 'likes_p' + str(page) +'.html', "w")
         s = user.fetch(url)
         if len(s)<13000:
             break
@@ -69,14 +69,14 @@ for n in names:
         f.close()
         time.sleep(1)
 
-    f = open('..out/' + n[0] + '_' + 'timeline' + '.html', "w")
+    f = open('out/' + n[0] + '_' + 'timeline' + '.html', "w")
     url = 'https://m.facebook.com/' + n[0] + '?v=timeline'
     s = user.fetch(url)
     f.write(s)
     f.close()
     time.sleep(1)
 
-    f = open('..out/' + n[0] + '_' + 'friends' + '.html', "w")
+    f = open('out/' + n[0] + '_' + 'friends' + '.html', "w")
     url = 'https://m.facebook.com/' + n[0] + '/friends'
     s = user.fetch(url)
     f.write(s)
