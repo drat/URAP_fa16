@@ -3,6 +3,7 @@ import urllib2
 import cookielib
 import sys
 import time
+import csv
 
 class Acc:
     jar = cookielib.CookieJar()
@@ -36,43 +37,43 @@ class Acc:
         # print res.read()
         return res.read()
 
+with open('user_name.csv', 'rb') as f:
+    reader = csv.reader(f)
+    names = list(reader)
+    print 'There are', len(names), 'usernames in the csv.'
 
-names = ['serenayan0919', 'bradleywolfe', 'ali.kelley.94']
+# names = ['serenayan0919', 'bradleywolfe', 'ali.kelley.94']
 
 user = Acc()
 user.login()
 for n in names:
-    f = open(n + '_' + "home" + '.html', "w")
-    url = 'https://m.facebook.com/' + n
+    f = open(n[0] + '_' + "home" + '.html', "w")
+    url = 'https://m.facebook.com/' + n[0]
     s = user.fetch(url)
     f.write(s)
     f.close
-    time.sleep(0.5)
+    time.sleep(1)
 
-    # f = open(n + '_' + 'likes' + '.html', "w")
-    # url = 'https://m.facebook.com/' + n + '?v=likes'
-    # s = user.fetch(url)
-    # f.write(s)
-    # f.close
-    # time.sleep(0.5)
+    f = open(n[0] + '_' + 'likes' + '.html', "w")
+    url = 'https://m.facebook.com/' + n[0] + '?v=likes'
+    s = user.fetch(url)
+    f.write(s)
+    f.close
+    time.sleep(1)
 
-    # f = open(n + '_' + "timeline" + '.html', "w")
-    # url = 'https://m.facebook.com/' + n + '?v=timeline'
-    # s = user.fetch(url)
-    # f.write(s)
-    # f.close
-    # time.sleep(0.5)
+    f = open(n[0] + '_' + 'timeline' + '.html', "w")
+    url = 'https://m.facebook.com/' + n[0] + '?v=timeline'
+    s = user.fetch(url)
+    f.write(s)
+    f.close
+    time.sleep(1)
 
-    # f = open(n + '_' + "friends" + '.html', "w")
-    # url = 'https://m.facebook.com/' + n + '/friends'
-    # s = user.fetch(url)
-    # f.write(s)
-    # f.close
-    # time.sleep(0.5)
+    f = open(n[0] + '_' + 'friends' + '.html', "w")
+    url = 'https://m.facebook.com/' + n[0] + '/friends'
+    s = user.fetch(url)
+    f.write(s)
+    f.close
+    time.sleep(1)
+    print 'Processed', n[0]
 
-
-# name = 'serenayan0919'
-# url = 'https://m.facebook.com/' + name
-# user = Acc()
-# user.login()
-# s = user.fetch(url)
+print 'Scraped all', len(names), 'profiles.'

@@ -33,46 +33,39 @@ class Acc:
     def fetch(self,url):
         req = urllib2.Request(url,None,self.headers)
         res = self.opener.open(req)
-        print res.read()
+        # print res.read()
         return res.read()
 
-    # def main(self):
 
-    #     names = ['serenayan0919', 'bradleywolfe', 'ali.kelley.94']
-    #     for name in names:
-
-            # sys.stdout = open('file', 'w')
-            # print 'test'
-
-            # f = open(name + '_' + "home" + '.html', "w")            
-            # f.write(user.fetch('https://m.facebook.com/' + name))
-            # f.close
-            # time.sleep(0.5)
-            
-
-            # f = open(name + '_' + 'likes' + '.html', "w")
-            # f.write(user.fetch('https://m.facebook.com/' + name + '?v=likes'))
-            # f.close
-            # time.sleep(0.5)
-            # sys.stdout = open (name + '_' + "likes" + '.html', "w")
-            # print user.fetch('https://m.facebook.com/' + name + '?v=likes')
-
-            # f = open(name + '_' + "timeline" + '.html', "w")
-            # f.write(user.fetch('https://m.facebook.com/' + name + '?v=timeline'))
-            # f.close
-            # time.sleep(0.5)
-
-            # f = open(name + '_' + "friends" + '.html', "w")
-            # f.write(user.fetch('https://m.facebook.com/' + name + '/friends'))
-            # f.close
-            # time.sleep(0.5)
+names = ['serenayan0919', 'bradleywolfe', 'ali.kelley.94']
 
 user = Acc()
-user.login
-# names = ['serenayan0919'] #, 'bradleywolfe', 'ali.kelley.94'
-# for name in names:
-user.fetch('https://m.facebook.com/serenayan0919')
-    # f = open(name + '_' + "home" + '.html', "w")            
-    # f.write(user.fetch('https://m.facebook.com/' + name))
-    # f.close
-    # time.sleep(0.5)
+user.login()
+for n in names:
+    f = open(n + '_' + "home" + '.html', "w")
+    url = 'https://m.facebook.com/' + n
+    s = user.fetch(url)
+    f.write(s)
+    f.close
+    time.sleep(0.5)
+
+    f = open(n + '_' + 'likes' + '.html', "w")
+    url = 'https://m.facebook.com/' + n + '?v=likes'
+    s = user.fetch(url)
+    f.write(s)
+    f.close
+    time.sleep(0.5)
+
+    f = open(n + '_' + "timeline" + '.html', "w")
+    url = 'https://m.facebook.com/' + n + '?v=timeline'
+    s = user.fetch(url)
+    f.write(s)
+    f.close
+    time.sleep(0.5)
+
+    f = open(n + '_' + "friends" + '.html', "w")
+    url = 'https://m.facebook.com/' + n + '/friends'
+    s = user.fetch(url)
+    f.write(s)
+    f.close
+    time.sleep(0.5)

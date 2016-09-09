@@ -1,7 +1,7 @@
 import urllib
 import urllib2
 import cookielib
-import re
+import sys
 import time
 
 class Acc:
