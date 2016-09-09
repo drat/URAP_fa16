@@ -42,37 +42,45 @@ with open('user_name.csv', 'rb') as f:
     names = list(reader)
     print 'There are', len(names), 'usernames in the csv.'
 
-# names = ['serenayan0919', 'bradleywolfe', 'ali.kelley.94']
+# names = [['serenayan0919'], ['bradleywolfe'], ['ali.kelley.94']]
 
 user = Acc()
 user.login()
 for n in names:
-    f = open(n[0] + '_' + "home" + '.html', "w")
+    f = open('..out/' + n[0] + '_' + "home" + '.html', "w")
     url = 'https://m.facebook.com/' + n[0]
     s = user.fetch(url)
     f.write(s)
-    f.close
+    f.close()
     time.sleep(1)
 
-    f = open(n[0] + '_' + 'likes' + '.html', "w")
-    url = 'https://m.facebook.com/' + n[0] + '?v=likes'
-    s = user.fetch(url)
-    f.write(s)
-    f.close
-    time.sleep(1)
+    ind = 0
+    page = 0
+    while True:
+        url = 'https://m.facebook.com/' + n[0] + '?v=likes&sectionid=9999&startindex=' + str(ind)
+        print url
+        ind += 11
+        page += 1
+        f = open('..out/' + n[0] + '_' + 'likes_p' + str(page) +'.html', "w")
+        s = user.fetch(url)
+        if len(s)<13000:
+            break
+        f.write(s)
+        f.close()
+        time.sleep(1)
 
-    f = open(n[0] + '_' + 'timeline' + '.html', "w")
+    f = open('..out/' + n[0] + '_' + 'timeline' + '.html', "w")
     url = 'https://m.facebook.com/' + n[0] + '?v=timeline'
     s = user.fetch(url)
     f.write(s)
-    f.close
+    f.close()
     time.sleep(1)
 
-    f = open(n[0] + '_' + 'friends' + '.html', "w")
+    f = open('..out/' + n[0] + '_' + 'friends' + '.html', "w")
     url = 'https://m.facebook.com/' + n[0] + '/friends'
     s = user.fetch(url)
     f.write(s)
-    f.close
+    f.close()
     time.sleep(1)
     print 'Processed', n[0]
 

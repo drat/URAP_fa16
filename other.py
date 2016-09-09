@@ -39,4 +39,4 @@ class Acc:
 bla = Acc()
 bla.login()
 # time.sleep(2)
-bla.fetch('https://m.facebook.com/ali.kelley.94')
+bla.fetch('https://m.facebook.com/yuwen.mou?v=likes&sectionid=9999&startindex=33')
